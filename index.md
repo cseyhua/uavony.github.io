@@ -17,6 +17,7 @@ home: true
 
 - [CSS](./css/index.md)
 - [Javascript](./js/index.md)
+- [Golang](./golang/index.md)
 
 <style scopd>
 .title {
