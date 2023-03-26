@@ -60,3 +60,24 @@
 	- `clz32\imul`
 
 ## 日期对象
+> 不含有任何属性，但有大量方法。以 1970 年 1 月 1 日 00:00:00 以来的毫秒数来储存数据类型的。
+
+- `set`设置日期与时间
+- `get`获取日期与时间
+	- getYear|getFullYear
+	- getDay返回星期
+	- getSeconds
+	- getMonth
+	- getHours
+	- getMimute
+- `to`返回字符串格式的值
+- `parse(str)`:解析回毫秒数
+- 秒分: 0-59
+- 时:0-23
+- 日:1-31
+- 月:0-11
+- 星期:0-6
+- 年
+- `getTime|setTime`:1970-1-1-0-0-0来的毫秒数
+
+
