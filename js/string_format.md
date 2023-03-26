@@ -1,0 +1,27 @@
+# 文本格式化
+---
+## String对象
+- typeof obj => object
+- 实例方法
+	- `charAt`,`charCodeAt`,`codePointAt`
+	- `indexOf(char, pos)`
+	- `lastIndexOf(char, pos)`
+	- `startsWith`,`endsWith`,`includes`
+	- `concat`
+	- `split`:可选的分割限制次数
+	- `slice(startIndex, endIndex)`:返回新字符串
+	- `substring(indexStart, indexEnd)`
+	- `substr(start[, length])`
+	- `match(regex)`
+	- `replace(regex, rep)`
+	- `search(regex)`
+	- `toLowerCase`
+	- `toUpperCase`
+	- `normalize`
+	- `repeat`
+	- `trim`:去掉开头与结尾的空白字符
+- 类方法
+	- `fromCharCode`
+	- `fromCodePoint`
+- 多行模板字符串\`\`
+- 
