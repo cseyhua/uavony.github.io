@@ -6,3 +6,4 @@
 - [debounce & throttle](./debounce_throttle.md)
 - [array](./array.md)
 - [operators](./operators.md)
+- [number & date](./number_date.md)
