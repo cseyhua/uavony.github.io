@@ -10,3 +10,4 @@
 - [string format](./string_format.md)
 - [regular_expression](regular_expression.md)
 - [indexed collection](./indexed_collection.md)
+- [keyed collection](./keyed_collection.md)
