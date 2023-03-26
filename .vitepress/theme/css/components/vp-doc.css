@@ -15,11 +15,11 @@
 
 .vp-doc h1 {
   letter-spacing: -0.02em;
-  line-height: 40px;
+  line-height: 80px;
   font-size: 40px;
   text-align: center;
-  margin-bottom:16px;
-  margin-top: 32px;
+  /* margin-bottom:16px; */
+  /* margin-top: 32px; */
 }
 
 .vp-doc h2 {
@@ -66,9 +66,8 @@
 @media (min-width: 768px) {
   .vp-doc h1 {
     letter-spacing: -0.02em;
-    line-height: 40px;
+    line-height: 80px;
     font-size: 40px;
-    margin-bottom:32px;
     text-align: center;
     color: #643d3d;
   }

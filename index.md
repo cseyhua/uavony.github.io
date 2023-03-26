@@ -1,13 +1,16 @@
 ---
 home: true
 ---
-
 <div class="title">Uavony's webpage</div>
 
-<div class="dexcription">
-I am <i>Uavony</i> and this is my webpage. There’s a lot here, so thanks for stopping by!  
-
-Please work harder, for someone you want to see, for the things you want to do, for the person you want to be.  
+<div class="head">
+    <img src="/static/head.jpeg"/>
+    <span>
+        I am <i>Uavony</i> and this is my webpage. There’s a lot here, so thanks for stopping by! 
+    </span>
+    <span>
+        Please work harder, for someone you want to see, for the things you want to do, for the person you want to be.  
+    </span>
 </div>
 
 <hr />
@@ -15,15 +18,33 @@ Please work harder, for someone you want to see, for the things you want to do, 
 - [CSS](./css/index.md)
 - [Javascript](./js/index.md)
 
-<style>
+<style scopd>
 .title {
-    margin-top: 32px;
-    margin-bottom: 16px;
     text-align: center;
     font-size: 2rem;
+    line-height: 8rem;
 }
 
 .dexcription {
     column-count: 2;
 }
+
+.head {
+    display:flex;
+    align-items:center;
+    gap: 16px;
+    font-size:1.25rem;
+    justify-content: space-between;
+}
+
+.head > img {
+    width: 70px;
+    border-radius:16px;
+    /* animation: khead 5s finite; */
+}
+
+/* @keymaps khead {
+
+} */
+
 </style>
