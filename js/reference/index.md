@@ -1,0 +1,196 @@
+# Javascript Reference
+---
+## 标准内置对象分类
+### 值属性
+- `Infinity`
+	- 与`Number.POSITIVE_INFINITY`值相同，表示正无穷，是全局对象的一个属性，即是一个全局变量
+- `NaN`
+	- 全局变量，表示非数字的值
+	- 与`Number.NaN`值相同
+	- 判断方法`isNaN`,`Number.isNaN`
+		- 由于`NaN`是js中唯一不等于自身的值，因此可以通过`v !== v`判断值是否是`NaN`
+		- 两个内置函数的区别，前一个函数是值本身是`NaN`或强制转换为数字后是`NaN`则返回`true`，后一个是只有值本身是`NaN`才会返回`true`
+	- 五种类型的操作会返回`NaN`
+		- 失败的数字转换
+			- `parseInt('ba')`
+			- `Number(undefined)`
+			- `Math.abs(undefined)`
+		- 计算结果不是实数的数学运算:`Math.sqrt(-1)`
+		- 不定式
+			- `0 * Infinity`
+			- `1**Infinity`
+			- `Infinity/Infinity`
+			- `Infinity - Infinity`
+		- 一个操作数被强制转换为`NaN`的方法或表达式:`7 * 'ba'`
+		- 将无效值作为数字的其他情况:`new Data('ba')`
+	- `NaN`的行为
+		- 如果 `NaN` 涉及数学运算（但不涉及位运算），结果通常也是 `NaN`
+		- 当 `NaN` 是任何关系比较（`>`, `<`, `>=`, `<=`）的操作数之一时，结果总是 `false`
+		- `NaN`不等于任何其他值，包括自己
+	- 数组查找`indexOf/lastIndexOf`不可以找到`NaN`，`includes`可以找到
+	- 与其他值的[相等性](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Equality_comparisons_and_sameness)
+	- `NaN ** 0 = 1` ,`0 / 0 = NaN`
+	> `isNaN(1n) || isNaN(undefined) && (NaN ** 0) && Number.isNaN(undefined) || isNaN((NaN ** 7)) || NaN == undefined`
+- `undefined` #datatype
+	- js原始数据类型
+	- 未初始化的变量的类型为`undefined`，方法默认返回`undefined`
+	- `typeof`对未定义变量不会报错
+	- `void`忽略表达式的返回值，返回`undefined`
+- `globalThis`全局对象
+	- `self`
+	- `window`
+	- `global`
+### 函数属性
+> 全局函数，调用时不需要指定所属对象
+- `eval(str)`
+	- 函数会将传入的字符串当做 JavaScript 代码进行执行
+	- 参数不是字符串则直接返回参数
+	- 使用`Window.Function`替代
+- `uneval`
+- `isFinite`
+	- 如果参数是`NaN`，`+Infinity`，`-Infinity`则返回`false`，其他返回`true`
+- `isNaN(Number)`
+	- 如果参数不是`Number`则强制转换
+	- 一个替代方案
+	```js
+	var isNaN=function(value){
+		var n = Number(value)
+		return n!==n;
+	}
+	```
+- `parseFloat(str)`
+	- 函数解析一个参数（必要时先转换为字符串）并返回一个浮点数
+	- 给定值被解析成浮点数。如果给定值不能被转换成数值，则会返回`NaN`
+	- 遇到非合法字符，则它会忽略该字符以及之后的所有字符，返回当前已经解析到的浮点数。第二个小数点的出现也会使解析停止，参数首位和末位的空白符会被忽略
+- `parseInt(str,rad)`
+	- `radix` 是 2-36 之间的整数，表示被解析字符串的基数
+	- 如果参数不是一个字符串，则将其转换为字符串
+	- 如果 `parseInt` 遇到的字符不是指定 `radix` 参数中的数字，它将忽略该字符以及所有后续字符，并返回到该点为止已解析的整数值。`parseInt` 将数字截断为整数值。允许前导和尾随空格。
+	- 符号只能识别+/-
+	- 小数的toString返回科学计算法形式
+- `decodeURI`
+- `decodeURIComponent`
+- `encodeURI`
+- `enCodeURIComponent`
+
+
+## 基本对象
+- `Object` #datatype 
+	- 可以通过构造函数`Object()`与对象字面量创建
+		-  如果给定值是 [`null`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/null) 或 [`undefined`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined)，将会创建并返回一个空对象
+		- 如果传进去的是一个基本类型的值，则会构造其包装类型的对象
+		- 如果传进去的是引用类型的值，仍然会返回这个值，经他们复制的变量保有和源对象相同的引用地址
+		- `Object`
+			- `new Object()`
+			- `new Object(value)`
+				- 给定null、undefined将返回空对象
+				- 给定其他值将返回给定值类型的对象
+				- 给定包装器对象将直接返回对象
+	- Object 自身没有提供方法删除其自身属性，必须使用`delete`删除属性
+	- 静态方法
+		- `Object.assign(target, ...sources)` #indeepclone
+			- 通过复制一个或多个对象来创建一个新的对象
+			- 传入对象属性可枚举`Object.propertyIsEnumerable()`且自有`Object.hasOwnProperty()`返回`true`
+			- 只复制属性值，因此是浅拷贝
+			- Note, only string wrappers can have own enumerable properties.
+			- [完整复制描述符版本](./code.md#assign)
+		- `Object.create(proto[, propertiesObject])`
+			- 方法用于创建一个新对象，使用现有的对象来作为新创建对象的原型
+			- `propertiesObject`传入对象的自有可枚举属性将为新创建的对象添加指定的属性值和对应的属性描述符
+		- `Object.definedProperty(obj, prop, descriptor)`
+			- 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。
+			- 属性描述符
+				- `configurable=false`
+				- `enumerable=false`
+				- `value=undefined`
+				- `writable=false`
+				- `get`
+				- `set`
+		- `Object.defineProperties(obj, props)`
+			- 直接在一个对象上定义新的属性或修改现有属性，并返回该对象。
+		- `Object.entries()` 
+			- 返回对象自身可枚举属性的键值对数组，与`for...in`区别是其会返回继承的可枚举属性
+			- [自实现](./code.md#entries)
+		- `Object.freeze`
+			- 冻结对象，使其不可以被修改
+		- `Object.getOwnPropertyDescriptor(obj,prop)`
+			- 方法返回指定对象上一个自有属性对应的属性描述符
+		- `Object.getOwnPropertyNames(obj)`
+			- 方法返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括 Symbol 值作为名称的属性）组成的数组。
+		- `Object.getOwnPropertySymbols(obj)`
+			- 方法返回一个给定对象自身的所有 Symbol 属性的数组。
+		- `Object.getPrototypeOf`
+			- 方法返回指定对象的原型
+		- `Object.is`
+			- 方法判断两个值是否为同一个值
+			- 满足以下任意条件则两个值相等
+				- 都是undefined
+				- 都是null
+				- 都是true或false
+				- 都是相同长度、相同字符、按相同顺序排列的字符串
+				- 都是相同对象（意味着都是同一个对象的值引用）
+				- 都是数字且
+					- 都是+0
+					- 都是-0
+					- 都是NaN
+					- 都是同一个值，非零且都不是NaN
+			- 与`==`和`===`不同点就是对待特殊符号以及不会强制转换
+				- 对0不同
+				- 对NaN不同
+			- 注意呦，对于对象是引用相同，小心空数组`[]`
+		- `Object.isExtensible(obj) -> boolean`
+			- 方法判断一个对象是否是可扩展的
+		- `isFrozen(obj)`
+			- 方法判断一个对象是否被冻结，所有属性都是不可配置的
+		- `isSealed(obj)`
+			- 判断一个对象是否被密封
+		- `Object.keys(obj)`
+			- 返回一个由一个给定对象的自身可枚举属性组成的数组
+		- `Object.preventExtensions(obj)`
+			- 让一个对象变的不可扩展，也就是永远不能再添加新的属性。
+		- `Object.seal(obj)`
+			- 密封对象，防止其他代码删除对象属性
+		- `Object.setPropertyOf(obj,proto)`
+			- 设置对象的原型
+		- `Object.values(obj)`
+			- 返回给定对象自身可枚举值的数组
+	- 实例属性
+		- `Object.prototype.constructor`
+			- 一个引用值，指向 Object 构造函数
+		- `Object.prototype.__proto__`
+			- 指向一个对象，当一个 object 实例化时，使用该对象作为实例化对象的原型
+	- 实例方法
+		- `Object.prototype.__defineGetter__()`
+			- 将一个属性与一个函数相关联，当该属性被访问时，执行该函数，并且返回函数的返回值。
+			- 已废弃
+			- 相应的Setter
+			- `__lookupGetter__`:返回Getter定义的函数
+				- 同样有Setter
+		- `Object.prototype.hasOwnProperty()`
+			- 判断属性是不是自身属性，而不是原型链上的属性
+		- `Object.isPrototypeOf()`
+			- 返回一个布尔值，用于表示该方法所调用的对象是否在指定对象的原型链中
+		- `Object.prototype.propertyIsEnumerable()`
+			- 方法返回一个布尔值，表示指定的属性是否可枚举。通过原型链继承的属性除外
+		- `Object.prototype.toLocaleString`
+			- 方法返回一个该对象的字符串表示。此方法被用于派生对象为了特定语言环境的目的（locale-specific purposes）而重载使用
+		- `Object.prototype.toString` #sourcevalue
+			- 方法返回一个表示该对象的字符串。该方法旨在重写（自定义）派生类对象的[类型转换](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures#%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2)的逻辑。
+			- 将对象转换为字符串，可自定义
+			- 使用最原本的toString
+				- `Object.prototype.toString.call|apply->[object Type]`
+				- 可以通过对象的`[Symbol.toStringTag]`改写
+		- `Object.prototype.valueOf` #sourcevalue 
+			- [`Object`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object) 的 **`valueOf()`** 方法将 `this` 值转换[为一个对象](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object#object_coercion)。此方法旨在用于自定义[类型转换](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures#%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2)的逻辑时，重写派生类对象。
+			- 所有继承自 `Object.prototype` 的对象（当然，除了 [`null`-prototype 对象](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)之外）都继承 `toString()` 方法。对于这些对象，`Object.prototype.valueOf()` 基本的实现是没有效果的：它返回对象自身，它的返回值将永远不会被任何[原始值转换算法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures#%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2)使用。
+- `Function`
+	- 每个 JavaScript 函数实际上都是一个 `Function` 对象
+	- 构造函数`Function()`
+	- 实例属性
+		- `Function.prototype.arguments` 已经被弃用，改用`arguments`对象在函数域内
+		- `Function.prototype.displayName`函数的显示名称
+		- `Function.prototype.length`函数期望的参数数量
+		- `Function.prototype.name`函数的名称
+
+
+

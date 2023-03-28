@@ -1,5 +1,11 @@
 # Javascript
 ---
+::: tip
+仅用于自己学习记录
+:::
+
+- [References](./reference/)
+
 - [loop-iter](./loop-iter.md)
 - [rollup](./rollup.md)
 - [function](./function.md)
@@ -16,5 +22,5 @@
 - [event_loop](./event_loop.md)
 - [enumerability & ownership](./enumerability_ownership.md)
 - [data struct](./data_struct.md)
-- [closure](./closure.mf)
+- [closure](./closure.md)
 - [classes](./classes.md)
