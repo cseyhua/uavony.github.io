@@ -253,6 +253,107 @@
 - `InternalError`
 
 
+### 数字与日期
+- `Number`
+	- 函数使用`Number(value)`不能转换时返回`NaN`
+	- 许多期望数值的内置操作是将它们的参数转换为数值
+		- 对于 Number 则总是返回自己
+		- `undefined`变为`NaN`
+		- `null`变成`0`
+		- `true/false` 变为`1/0`
+		- 如果它们包含[数字字面量](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Lexical_grammar#%E6%95%B0%E5%AD%97%E5%AD%97%E9%9D%A2%E9%87%8F)，字符串通过解析它们来转换。如果解析失败，返回的结果为 `NaN`。与实际数字字面量相比，它们有一些细微的差别
+			- 忽略前导和尾随空格/行终止符。
+			- 前导数值 `0` 不会导致该数值成为八进制文本
+			- `+` 和 `-` 允许在字符串的开头指示其符号
+			- `Infinity` 和 `-Infinity` 被当作是字面量。在实际代码中，它们是全局变量
+			- 空字符串或仅空格字符串转换为 `0`
+			- 不允许使用数字分隔符
+		- [BigInt](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/BigInt) 抛出 [`TypeError`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/TypeError)，以防止意外的强制隐式转换损失精度。
+		- [Symbol](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol) 抛出 [`TypeError`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/TypeError)。
+		- -   对象首先按顺序调用 [`@@toPrimitive]()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive)（将 `"number"` 作为 hint）、`valueOf()` 和 `toString()` 方法将其[转换为原始值](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures#%E5%BC%BA%E5%88%B6%E5%8E%9F%E5%A7%8B%E5%80%BC%E8%BD%AC%E6%8D%A2)。然后将生成的原始值转换为数值。
+	- 有两种方法可以在 JavaScript 中实现几乎相同的效果。
+		- [一元加](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Unary_plus)：`+x` 完全按照上面的数值强制转换步骤来转换 `x`。
+		- 函数：`Number(x)` 使用相同的算法转换 `x`，除了 [BigInt](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/BigInt) 不会抛出 [`TypeError`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/TypeError)，而是返回它的 Number 值，并且可能损失精度。
+	- 静态属性
+		- `Number.EPSILON`
+		- `Number.MAX_SAFE_INTEGER`
+		- `Number.MAX_VALUE`
+		- `Number.MIN_SAFE_INTEGER`
+		- `Number.MIN_VALUE`
+		- `Number.NaN`
+		- `Number.NEGATIVE_INFINITY`
+		- `Number.POSITIVE_INFINITY`
+		- `Number.prototype`
+	- 静态方法
+		- `Number.isNaN`
+		- `Number.isFinite`
+		- `Number.isInteger`
+		- `Number.isSafeInteger`
+		- `Number.parseFloat`
+		- `Number.parseInt`
+	- 实例方法
+		- `Number.prototype.toExponential()`
+		- `Number.prototype.toFixed()`
+		- `Number.prototype.toLocaleString()`
+		- `Number.prototype.toPrecision()`
+		- `Number.prototype.toString()`
+		- `Number.prototype.valueOf()`
+- `BigInt`
+- `Math`
+- `Date`
+	- 方法
+		- `Date.now()`
+		- `Date.parse()`
+	- 实例方法
+		- `getDate`1-31
+		- `getDay`0-6
+		- `getFullYear`
+		- `getHours`0-23
+		- `getMillisecinds`0-999
+		- `getMinutes`0-59
+		- `getMonth`0-11
+		- `getSeconds`0-59
+		- `getTime`开始时间到对象的毫秒数
+		- `getTimezoneOffset`
+		- `getUTCDate`
+		- `getUTCDay`
+		- `getUTCFullYear`
+		- `getUTCHours`
+		- `getUTCMilliseconds`
+		- `getUTCMinutes`
+		- `getUTCUTCMonth`
+		- `getUTCSeconds`
+		- `getYear`
+		- `setDate`
+		- `setFullYear`
+		- `setHours`
+		- `setMilliSeconds`
+		- `setMinutes`
+		- `setMonth`
+		- `setSeconds`
+		- `setTime`
+		- `setUTCDate`
+		- `setUTCFullYear`
+		- `setUTCHours`
+		- `setUTCMilliseconds`
+		- `setUTCMinutes`
+		- `setUTCMonth`
+		- `setUTCSeconds`
+		- `setYear`
+		- `toDateString`
+		- `toISOString`
+		- `toJSON`
+		- `toLocaleDateString`
+		- `toLocaleString`
+		- `toLocaleTimeString`
+		- `toString`
+		- `toTimeString`
+		- `toUTCString`
+		- `valueOf`
 
+
+### 字符串
+- `String`
+	- 
 
 
