@@ -1,6 +1,8 @@
 # Javascript Reference
 ---
 ## 标准内置对象分类
+
+
 ### 值属性
 - `Infinity`
 	- 与`Number.POSITIVE_INFINITY`值相同，表示正无穷，是全局对象的一个属性，即是一个全局变量
@@ -40,6 +42,8 @@
 	- `self`
 	- `window`
 	- `global`
+
+
 ### 函数属性
 > 全局函数，调用时不需要指定所属对象
 - `eval(str)`
@@ -74,7 +78,7 @@
 - `enCodeURIComponent`
 
 
-## 基本对象
+### 基本对象
 - `Object` #datatype 
 	- 可以通过构造函数`Object()`与对象字面量创建
 		-  如果给定值是 [`null`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/null) 或 [`undefined`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined)，将会创建并返回一个空对象
@@ -186,11 +190,69 @@
 - `Function`
 	- 每个 JavaScript 函数实际上都是一个 `Function` 对象
 	- 构造函数`Function()`
+		- 不会创建当前环境的闭包
 	- 实例属性
 		- `Function.prototype.arguments` 已经被弃用，改用`arguments`对象在函数域内
 		- `Function.prototype.displayName`函数的显示名称
 		- `Function.prototype.length`函数期望的参数数量
 		- `Function.prototype.name`函数的名称
+	- 实例方法
+		- `Function.prototype.apply(thisArg [, argsArray])`
+			- 调用一个函数并将其 `this` 的值设置为提供的 `thisArg`。参数可用以通过[`数组`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array)对象传递。
+			- thisArg在非严格模式下指定null与undefined会自动替换为全局对象，原始值会被包装
+		- `Function.prototype.bind(thisArg [, arg1 [,arg2 [,...argN]]])`
+			- 方法创建一个新的函数，在 `bind()` 被调用时，这个新函数的 `this` 被指定为 `bind()` 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。
+			- 通常用于预设参数
+		- `Function.prototype.call(thisArg [,arg1, ..., argN])`
+		- `Function.prototype.toString()`覆盖Object的toString
+- `Boolean`
+	- 对象是一个布尔值的对象包装器
+		- 如果需要，作为第一个参数传递的值将转换为布尔值。如果省略该参数或参数值为 `0`、`-0`、[`null`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/null)、`false`、[`NaN`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/NaN)、[`undefined`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined)，或空字符串（`""`），则该对象具有的初始值为 `false`。所有其他值，包括任何对象，空数组（`[]`）或字符串 `"false"`，都会创建一个初始值为 `true` 的对象。
+	- 值不是`undefiend`与`null`的任何对象，在`if`条件中，都会被评估为`true`
+	- 不要用创建`Boolean`对象的方式将一个非布尔值转化成布尔值，直接将`Boolean`当作函数使用或者使用`!!`运算符
+	- 注意什么时候才会涉及类型转换
+	- 实例方法
+		- `Boolean.prototype.toString`
+			- 返回true或flase字符串
+		- `Boolean.prototype.valueOf`
+			- 返回Boolean包装的原始值true/false
+- `Symbol` #datatype 
+	- `Symbol([description])`
+		- 可选的，字符串类型。对 symbol 的描述，可用于调试但不是访问 symbol 本身。
+	- 全局
+		- `Symbol.for`
+			- 使用给定的 key 搜索现有的 symbol，如果找到则返回该 symbol。否则将使用给定的 key 在全局 symbol 注册表中创建一个新的 symbol。
+		- `Symbol.keyFor`
+			- 从全局 symbol 注册表中，为给定的 symbol 检索一个共享的？symbol key。
+	- 属性
+		- `Symbol.length`
+		- `Symbol.prototype`
+	- 内置通用
+		- `Symbol.iterator`
+			- 一个返回一个对象默认迭代器的方法。被 [`for...of`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of) 使用。
+		- `Symbol.asyncIterator`
+			- 个返回对象默认的异步迭代器的方法。被 [`for await of`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for-await...of) 使用。
+		- `Symbol.match`
+		- `Symbol.replace`
+		- `Symbol.search`
+		- `Symbol.split`
+		- ...
+	- 实例属性`Symbol.prototype.description`
+
+
+### 错误对象
+> 时间有限，关于错误部分没有看
+- `Error`
+- `RangeError`
+- `ReferenceError`
+- `EvalError`
+- `SyntaxError`
+- `TypeError`
+- `URIError`
+- `AggregateError`
+- `InternalError`
+
+
 
 
 
