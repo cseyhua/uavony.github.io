@@ -355,6 +355,260 @@
 ### 字符串
 - `String`
 	- **`String`** 对象用于表示和操作字符序列。
-	- 
+	- 访问字符串字符
+		- `charAt`
+		- 元素访问器`[]`
+	- 比较字符串
+		- `==`
+		- `===`
+		- 区分大小写
+	- 许多期望字符串的内置操作首先将它们的参数强制转换为字符串
+		- 字符串按原样返回
+		- `undefined => "undefined"` 
+		- `null => "null"`
+		- `true/false => "true/false"`
+	- `String()`构造函数
+	- 静态方法
+		- `String.fromCharCode()`
+		- `String.fromCodePoint()`
+		- `String.raw()`
+	- 实例属性
+		- `String.prototype.length`
+	- 实例方法
+		- `String.prototype.at()`
+		- `String.prototype.charAt()`
+		- `String.prototype.charCodeAt()`
+		- `String.prototype.codePointAt()`
+		- `String.prototype.concat()`
+		- `String.prototype.includes()`
+		- `String.prototype.endWith()`
+		- `String.prototype.indexOf()`
+		- `String.prototype.lastIndexOf()`
+		- `String.prototype.localeCompare()`
+		- `String.prototype.match()`
+			- 如果使用 g 标志，则将返回与完整正则表达式匹配的所有结果，但不会返回捕获组。
+			- 如果未使用 g 标志，则仅返回第一个完整匹配及其相关的捕获组（`Array`）。在这种情况下，返回的项目将具有如下所述的其他属性。
+				- 一个命名捕获组对象，其键是捕获组名称，值是捕获组，如果未定义命名捕获组，则为 `undefined`
+				- 匹配的结果的开始位置
+				- 搜索的字符串
+			- 没有查找到则返回`null`
+		- `String.prototype.matchAll()`
+			- 在使用`g`时所有匹配的迭代器，每项与`match`未使用`g`相同
+		- `String.prototype.normalize()`
+		- `String.prototype.padEnd()`
+		- `String.prototype.padStart()`
+		- `String.prototype.repeat(count)`
+			- `0` 变空`""`
+			- `1`原样返回`"abc" => "abc"`
+			- `2   "abc" => "abcabc"`
+		- `String.prototype.replace`
+		- `String.prototype.replaceAll`
+		- `String.prototype.search`
+			- 如果匹配成功，则 `search()` 返回正则表达式在字符串中首次匹配项的索引;否则，返回 `-1`。
+		- `String.prototype.slice`
+		- `String.prototype.split`
+		- `String.prototype.startsWith`
+		- `String.prototype.substring`
+		- `String.prototype.toLocaleLowerCase`
+		- `String.prototype.toLocaleUpperCase`
+		- `String.prototype.toLowerCase`
+		- `String.prototype.toString`
+		- `String.prototype.toUpperCase`
+		- `String.prototype.trim`
+		- `String.prototype.trimStart`
+		- `String.prototype.trimEnd`
+		- `String.prototype.valueOf`
+- `RegExp`
 
+
+### 可索引的集合对象
+- `Array`
+	- 可以包含不同数据类型，并且可以改变大小，若只有同类型，可以使用类型化数组
+	- 所有JavaScript 对象的标准内置复制操作都会创建浅拷贝
+	- 构造函数`Array()`
+	- 静态方法
+		- `Array.from()`
+			- 方法对一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例
+		- `Array.isArray()`
+		- `Array.of()`
+			- 注意与`Array()`构造函数的区别
+	- 实例属性
+		- `length`
+	- 实例方法
+		- `at()`
+		- `concat()`
+		- `copyWithin()`
+		- `entries()`
+		- `every()`
+		- `fill()`
+		- `filter()`
+		- `find()`
+		- `findIndex()`
+		- `findLast()`
+		- `findLastIndex()`
+		- `flat()`
+		- `flatMap()`
+		- `forEach`
+		- `group()`
+		- `groupToMap()`
+		- `includes()`
+		- `indexOf()`
+		- `join()`
+		- `keys()`
+		- `lastIndexOf()`
+		- `map()`
+		- `pop()`
+		- `push()`
+		- `reduce()`
+		- `reduceRight()`
+		- `reverse()`
+		- `shift()`
+		- `slice()`
+		- `some()`
+		- `sort()`
+		- `splice()`
+		- `toLocaleString()`
+		- `toString()`
+			- 内部调用`join`，如果`join`不是一个函数就调用`Object.prototype.toString`
+		- `unshift()`
+		- `values()`
+- `Int8Array`
+- `Uint8Array`
+- `Int16Array`
+- `Uint16Array`
+- `Int32Array`
+- `Uint32Array`
+- `Float32Array`
+- `Float64Array`
+- `BigInt64Array`
+- `BigUint64Array`
+
+
+### 使用键的集合对象
+- `Map`
+	- 按`set()`的插入顺序进行迭代，返回`[key, value]`
+	- 构造方法`Map()`
+	- 实例属性`size`
+	- 实例方法
+		- `clear`
+		- `delete`
+		- `get`
+		- `has`
+		- `set`
+		- `keys`
+		- `values`
+		- `forEach`
+		- 
+- `WeakMap`
+	- 与Map相同，但也有区别，键是落引用的且必须为对象，值是任意的
+	- 
+- `Set`
+	- 构造函数`Set()`
+	- 实例属性`size`
+	- 实例方法
+		- `add`
+		- `clear`
+		- `delete`
+		- `entries`
+		- `forEach`
+		- `has`
+		- `keys`与`values`相同
+		- `values`按插入顺序排列的迭代对象
+- `WeakSet`
+
+
+### 结构化数据
+- `ArrayBuffer`
+- `ShareArrayBuffer`
+- `Atomics`
+- `DataView`
+- `JSON`
+
+
+### 控制抽象对象
+- `Promise`
+	- 对象用于表示一个异步操作的最终完成（或失败）及其结果值
+	- 状态
+		- _待定（pending）_：初始状态，既没有被兑现，也没有被拒绝。
+		-   _已兑现（fulfilled）_：意味着操作成功完成。
+		-   _已拒绝（rejected）_：意味着操作失败。
+	- 静态方法
+		- `all`所有均成功或任意一个失败则返回一个新的promise
+		- `allSettled`所有的都已经敲定，（每一个都已兑现或拒绝），返回一个新的，并兑现一个对象数组，每个对象对应每个Promise的结果
+		- `any`任意一个成功就返回成功promise的值
+		- `race`任意一个的状态被敲定
+		- `reject`
+		- `resolve`
+			- 如果参数是带有then方法的对象，则状态由then方法的执行结果决定。否则就是已兑现
+	- 实例方法
+		- `catch`
+		- `then`
+		- `finally`
+- `Generator`
+- `GeneratorFunction`
+- `AsyncFunction`
+
+
+### 反射
+- `Reflect`
+	- 一个内置的对象，它提供拦截 JavaScript 操作的方法
+	- 方法
+		- `Reflect.apply`
+		- `Reflect.construct`
+		- `Reflect.defineProperty`
+		- `Reflect.deleteProperty`
+		- `Reflect.get`
+		- `Reflect.getOwnPropertyDescriptor`
+		- `Reflect.getPrototypeOf`
+		- `Reflect.has`
+		- `Reflect.isEstensible`
+		- `Reflect.ownKeys`
+		- `Reflect.preventExtensions`
+		- `Reflect.set`
+		- `Reflect.setPrototypeOf`
+- `Proxy`
+	- **Proxy** 对象用于创建一个对象的代理，从而实现基本操作的拦截和自定义（如属性查找、赋值、枚举、函数调用等）
+	- `const p = new Proxy(target, handler)`
+	- 静态方法
+		- 创建可撤销的Proxy对象`Proxy.revocable`
+	- `handler` 对象是一个容纳一批特定属性的占位符对象。它包含有 `Proxy` 的各个捕获器（trap）
+		- `getPrototypeOf`
+		- `setPrototypeOf`
+		- `isExtensible`
+		- `preventExtensions`
+		- `getOwnPropertyDescriptor`
+		- `defineProperty`
+		- `has=>in`
+		- `get`
+		- `set`
+		- `deleteProperty=>delete`
+		- `ownKeys=>getOwnPropertyNames Symbols`
+		- `apply`
+		- `construct=>new`
+
+
+### 国际化
+- `Intl`
+- `Intl.Collator`
+- `Intl.DateTimeFormat`
+- `Intl.ListFormat`
+- `Intl.NumberFormat`
+- `Intl.PluralRules`
+- `Intl.RelativeTimeFormat`
+- `Intl.Locale`
+
+
+### WebAssembly
+- `WebAssembly`
+- `WebAssembly.Module`
+- `WebAssembly.Instance`
+- `WebAssembly.Memory`
+- `WebAssembly.Table`
+- `WebAssembly.Table`
+- `WebAssembly.CompileError`
+- `WebAssembly.LinkError`
+- `WebAssembly.RuntimeError`
+
+### 其他
+`arguments`
 
