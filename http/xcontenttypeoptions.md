@@ -17,7 +17,7 @@ X-Content-Type-Options: nosniff
 
 ---
 
-- 响应头是用来给浏览器指示允许一个页面可否在 <frame>、<iframe>、<embed> 或者 <object> 中展现的标记
+- 响应头是用来给浏览器指示允许一个页面可否在 `<frame>、<iframe>、<embed>` 或者 `<object>` 中展现的标记
 - 站点可以通过确保网站没有被嵌入到别人的站点里面，从而避免点击劫持 (en-US)攻击
 
 ```
