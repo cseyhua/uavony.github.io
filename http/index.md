@@ -8,6 +8,7 @@
 - [Security](./security.md)
 - [X-Content-Type](./xcontenttypeoptions.md)
 - [CSP](./csp.md)
+- [Authentication](./authentication.md)
 
 ---
 
