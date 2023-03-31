@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSS Animation</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div id="ani" class="animation-box"></div>
+    <script>
+      let ani = document.getElementById("ani");
+      if (ani) {
+        ani.addEventListener("animationstart", animationHandler, false);
+      }
+
+      function animationHandler(e) {
+        console.log(e);
+      }
+    </script>
+  </body>
+</html>
