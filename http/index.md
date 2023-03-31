@@ -13,6 +13,8 @@
 - [conditional_request](./conditional_request.md)
 - [content_negotiation](./content_negotiation.md)
 - [range_request](./range_request.md)
+- [redirection](./redirection.md)
+- [method](./method.md)
 
 ---
 
