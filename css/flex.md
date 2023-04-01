@@ -88,6 +88,14 @@ CSS Flexible Layout 由两个轴组成：主轴与交叉轴，通过`flex-direct
 
 控制主轴（横轴）上所有 flex 项目的对齐。
 
+align-content: flex-start
+align-content: flex-end
+align-content: center
+align-content: space-between
+align-content: space-around
+align-content: stretch
+align-content: space-evenly
+
 - `align-items`
 
 控制交叉轴（纵轴）上所有 flex 项目的对齐。
@@ -115,3 +123,9 @@ align-content: space-between
 align-content: space-around
 align-content: stretch
 align-content: space-evenly
+
+## 项目的顺序
+
+视觉顺序与渲染顺序
+
+- `order`
