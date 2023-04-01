@@ -1,8 +1,7 @@
 {
-    "plugins": [
-        "html"
-    ],
-    "parseOptions": {
-        "sourceType": "module"
-    }
+  "plugins": ["html"],
+  "parseOptions": {
+    "sourceType": "module",
+    "es6": true
+  }
 }
