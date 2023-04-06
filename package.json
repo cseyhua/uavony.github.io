@@ -1,5 +1,8 @@
 {
   "devDependencies": {
+    "eslint": "^8.37.0",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-markdown": "^3.0.0",
     "typescript": "^5.0.2",
     "vitepress": "^1.0.0-alpha.61",
     "vue": "^3.2.47"

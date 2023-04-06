@@ -1,0 +1,41 @@
+:root {
+  color-scheme: dark;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.content {
+  font-size: 4rem;
+  font-weight: 800;
+  position: relative;
+}
+
+.content::before {
+  content: 'HTML CSS JAVASCRIPT';
+  color: aqua;
+  position: absolute;
+  width: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid yellow;
+  filter: drop-shadow(0 0 50px yellow);
+  animation: smear 5s linear infinite;
+}
+
+@keyframes smear {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
